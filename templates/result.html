@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Magic: The Gathering Set Analyzer</h1>
+        <nav>
+            <a href="/" class="header-button">Home</a>
+            <a href="/about" class="header-button">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Results for Set: {{ set_code }}</h1>
+        <p><strong>Booster Type:</strong> {{ booster_type }}</p>
+        <p><strong>Expected Value:</strong> ${{ expected_value }}</p>
+        <p><strong>Value Index:</strong> {{ value_index | round(2) }}</p>
+
+        <h2>Top 3 Most Valuable Cards</h2>
+        <ul>
+            {% for card in top_3_cards %}
+                <li class="card-list">
+                    {% if card.image_uris and card.image_uris.normal %}
+                        <img src="{{ card.image_uris.normal }}" alt="{{ card.name }}" class="card-image">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='card-not-found.jpg') }}" alt="Default Image" class="card-image">
+                    {% endif %}
+                    <br>
+                    {{ card.name }} - ${{ card.prices.usd | default('N/A') }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('index') }}" class="back-button">Back to Analyze</a>
+    </div>
+</body>
+</html>

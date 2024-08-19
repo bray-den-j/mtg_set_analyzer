@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Magic: The Gathering Set Analyzer</h1>
+        <nav>
+            <a href="/" class="header-button">Home</a>
+            <a href="/about" class="header-button">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>About the Set Analyzer</h1>
+        <p><i>Hey! Thanks for stopping in an checking out my <strong>Set Analyzer</strong>. This was created as a way for me (as a broke college student) to calculate the expected value of Magic: The Gathering Packs. Feel free to explore this little website I made and have fun! Best of luck on the pack cracking!</i></p>
+        <p><i>- B</i></p>
+        <p><strong>Collector Booster Values in the Works!</strong></p>
+        <p>This tool was programmed in python and uses the <a href="https://scryfall.com/docs/api">Scryfall API</a> database to gather card values. The value index is a useful metric that compares the expected value of the cards in a booster pack to the cost of that pack.</p>
+        <p>For more information on how the value index works, <a href="{{ url_for('value_index') }}">click here</a>.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic: The Gathering Set Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Magic: The Gathering Set Analyzer</h1>
+        <nav>
+            <a href="/" class="header-button">Home</a>
+            <a href="/about" class="header-button">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Analyze a Set</h2>
+        <form action="{{ url_for('analyze') }}" method="post">
+            <label for="set-input">Choose a Set:</label>
+            <div style="position: relative;">
+                <input type="text" id="set-input" name="set_name" placeholder="Type to search..." oninput="filterSets()" autocomplete="off">
+                <div id="autocomplete-container" class="autocomplete-suggestions"></div>
+            </div>
+            <input type="hidden" id="set_code" name="set_code" value="">
+            
+            <label for="booster_type">Booster Type:</label>
+            <select id="booster_type" name="booster_type">
+                <option value="set">Set Booster</option>
+                <option value="draft">Draft Booster</option>
+                <option value="play">Play Booster</option>
+            </select>
+            
+            <label for="booster_price">Booster Price (USD):</label>
+            <input type="number" id="booster_price" name="booster_price" step="0.01" required>
+            
+            <button type="submit" class="back-button">Analyze</button>
+        </form>
+    </div>
+</body>
+</html>
